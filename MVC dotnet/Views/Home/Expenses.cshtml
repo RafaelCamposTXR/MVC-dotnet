@@ -1,53 +1,59 @@
 ﻿@{
-    ViewData["Title"] = "Expenses";
+    ViewData["Title"] = "Despesas";
 }
 
 @model List<Expense>
 
-<div class="text-center">
-    <h1 class="display-4">Despesas</h1>
-    <br/>
-    <hr />
-    <h3>Despesas Totais: R$ @ViewBag.Expenses</h3>
-    <br />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>
-                    Id
-                </th>
-                <th>
-                    Valor
-                </th>
-                <th>
-                    Descrição
-                </th>
-                <th>
-                    Ações
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            @{
-                foreach (var expense in Model)
-                {
-                    <tr>
-                        <td>
-                            @expense.id
-                        </td>
-                        <td>
-                            @expense.Value
-                        </td>
-                        <td>
-                            @expense.Description
-                        </td>
-                        <td>
-                            <a asp-action="CreateEditExpense" asp-route-id="@expense.id">Editar</a>
-                            <a asp-action="DeleteExpense" asp-route-id="@expense.id">Excluir</a>
-                        </td>
-                    </tr>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"]</title>
+</head>
+<body>
+    <div class="container text-center my-5 full-height">
+        <h1 class="display-4">Despesas</h1>
+        <hr />
+        <h3>Despesas Totais: R$ @ViewBag.Expenses.ToString("N2")</h3>
+        <br />
+        <a asp-action="CreateEditExpense" class="btn btn-success mb-3">Adicionar Nova Despesa</a>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Valor</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    foreach (var expense in Model)
+                    {
+                        <tr>
+                            <td>@expense.id</td>
+                            <td>R$ @expense.Value.ToString("N2")</td>
+                            <td>@expense.Description</td>
+                            <td>
+                                <a asp-action="CreateEditExpense" asp-route-id="@expense.id" class="btn btn-warning btn-sm">Editar</a>
+                                <a asp-action="DeleteExpense" asp-route-id="@expense.id" class="btn btn-danger btn-sm" onclick="return confirm('Tem certeza que deseja excluir esta despesa?');">Excluir</a>
+                            </td>
+                        </tr>
+                    }
                 }
-            }
-        </tbody>
-    </table>
-</div>
+            </tbody>
+        </table>
+    </div>
+
+    <footer class="footer bg-light text-center mt-5">
+        <div class="container">
+            <span class="text-muted">© 2024 Visualizador de Despesas. Todos os direitos reservados.</span>
+        </div>
+    </footer>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

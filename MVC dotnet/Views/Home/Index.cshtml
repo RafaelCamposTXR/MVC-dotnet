@@ -2,14 +2,37 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4" style="margin-top: 12vh;margin-bottom: 100px">Visualizador de Despesas</h1>
-    <br />
-    <a asp-action="Expenses"class="btn btn-primary">Visão Geral</a>
-    <br />
-    <br />
-    <a asp-action="CreateEditExpense" class="btn btn-secondary">Adicionar Despesa</a>
-    <br />
-    <br />
-    <br />
-</div>
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="~/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <title>@ViewData["Title"]</title>
+    <style>
+        .full-height {
+            min-height: 80vh; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container text-center full-height">
+        <!-- Adicionada a classe full-height -->
+        <h1 class="display-4">Boas Vindas</h1>
+        <p class="lead">Gerencie suas despesas de forma mínima e eficiente.</p>
+        <br />
+        <a asp-action="Expenses" class="btn btn-primary mb-3" style="width: 15vw;">Visão Geral</a>
+        <br />
+        <a asp-action="CreateEditExpense" class="btn btn-secondary mb-3" style="width: 15vw;">Adicionar Despesa</a>
+    </div>
+
+    <footer class="footer bg-light text-center mt-5">
+        <div class="container">
+            <span class="text-muted">© 2024 Visualizador de Despesas. Todos os direitos reservados.</span>
+        </div>
+    </footer>
+
+    <script src="~/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
